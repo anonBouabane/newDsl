@@ -10,7 +10,23 @@ class Registercustomer extends StatefulWidget {
   State<Registercustomer> createState() => _RegistercustomerState();
 }
 
+final _formKey = GlobalKey<FormState>();
+
 class _RegistercustomerState extends State<Registercustomer> {
+  // TextEditingController fullNameController = TextEditingController();
+  // TextEditingController shopNameController =TextEditingController();
+  // TextEditingController phoneController = TextEditingController();
+  // TextEditingController ageController =TextEditingController();
+  // TextEditingController nickNameController =TextEditingController();
+  // TextEditingController villageController =TextEditingController();
+  // TextEditingController districtController = TextEditingController();
+  // TextEditingController provinceController = TextEditingController();
+  // TextEditingController shopLocationController = TextEditingController();
+  // TextEditingController unitController = TextEditingController();
+  // TextEditingController roadController = TextEditingController();
+  // TextEditingController districtShopController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -27,45 +43,48 @@ class _RegistercustomerState extends State<Registercustomer> {
                 style: txtTitlewnormal,
               ),
             ),
-            body: Stack(
-              children: [
-                secondAppBar(height),
-                SingleChildScrollView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: height / 10),
-                        child: Container(
-                          height: height,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(40),
-                                topRight: Radius.circular(40)),
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 40.0, horizontal: 10.0),
-                            child: Column(
-                              children: [
-                                fullNameAndShopnameMeThod(width),
-                                phoneAndage(),
-                                nickNameAndVillage(width),
-                                districtAndProvince(width),
-                                location(width),
-                                districtProvinceShop(width),
-                                submit(width)
-                              ],
+            body: Form(
+              key: _formKey,
+              child: Stack(
+                children: [
+                  secondAppBar(height),
+                  SingleChildScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: height / 10),
+                          child: Container(
+                            height: height,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(40),
+                                  topRight: Radius.circular(40)),
+                              color: Colors.white,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 40.0, horizontal: 10.0),
+                              child: Column(
+                                children: [
+                                  fullNameAndShopnameMeThod(width),
+                                  phoneAndage(),
+                                  nickNameAndVillage(width),
+                                  districtAndProvince(width),
+                                  location(width),
+                                  districtProvinceShop(width),
+                                  submit(width)
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )));
   }
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:newdsl/data/controller/auth_controller.dart';
+import 'package:newdsl/share/sharedata.dart';
 import 'package:newdsl/view/util/styles/colors.dart';
 import 'package:newdsl/view/util/styles/textstyles.dart';
+import 'package:provider/provider.dart';
 
 class Profilescreen extends StatefulWidget {
   const Profilescreen({super.key});
@@ -46,13 +49,34 @@ class _ProfilescreenState extends State<Profilescreen> {
                         child: Column(
                           children: [
                             nameMethod(),
-                            phoneMethod(),
+                            // phoneMethod(),
                             departMethod(),
                             roleMethod(),
                             const SizedBox(
                               height: 20,
                             ),
-                            inkWelMethod(context)
+                            Consumer<AuthController>(
+                                builder: (context, value, child) {
+                              return InkWell(
+                                onTap: () {
+                                  value.clearprefer();
+                                },
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.3,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: Center(
+                                      child: Text(
+                                    "ອອກຈາກລະບົບ",
+                                    style: txtRegular,
+                                  )),
+                                ),
+                              );
+                            })
                           ],
                         ),
                       ),
@@ -73,24 +97,6 @@ class _ProfilescreenState extends State<Profilescreen> {
     );
   }
 
-  InkWell inkWelMethod(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        width: MediaQuery.of(context).size.width / 1.3,
-        height: 50,
-        decoration: BoxDecoration(
-            border: Border.all(),
-            borderRadius: const BorderRadius.all(Radius.circular(10))),
-        child: Center(
-            child: Text(
-          "ອອກຈາກລະບົບ",
-          style: txtRegular,
-        )),
-      ),
-    );
-  }
-
   SizedBox roleMethod() {
     return SizedBox(
         child: Card(
@@ -106,7 +112,7 @@ class _ProfilescreenState extends State<Profilescreen> {
                   style: txtRegularBold,
                 ),
                 Text(
-                  'admin',
+                  ShareData.role,
                   style: txtSmall,
                 ),
               ],
@@ -132,7 +138,7 @@ class _ProfilescreenState extends State<Profilescreen> {
                   style: txtRegularBold,
                 ),
                 Text(
-                  'it',
+                   ShareData.userDepart.toString(),
                   style: txtSmall,
                 ),
               ],
@@ -143,31 +149,31 @@ class _ProfilescreenState extends State<Profilescreen> {
     ));
   }
 
-  SizedBox phoneMethod() {
-    return SizedBox(
-        child: Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "phone",
-                  style: txtRegularBold,
-                ),
-                Text(
-                  '77995400',
-                  style: txtSmall,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ));
-  }
+  // SizedBox phoneMethod() {
+  //   return SizedBox(
+  //       child: Card(
+  //     child: Padding(
+  //       padding: const EdgeInsets.all(8.0),
+  //       child: Row(
+  //         children: [
+  //           Column(
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             children: [
+  //               Text(
+  //                 "phone",
+  //                 style: txtRegularBold,
+  //               ),
+  //               Text(
+  //                 '77995400',
+  //                 style: txtSmall,
+  //               ),
+  //             ],
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   ));
+  // }
 
   SizedBox nameMethod() {
     return SizedBox(
@@ -184,7 +190,7 @@ class _ProfilescreenState extends State<Profilescreen> {
                   style: txtRegularBold,
                 ),
                 Text(
-                  'anon',
+                  ShareData.fullName,
                   style: txtSmall,
                 ),
               ],
